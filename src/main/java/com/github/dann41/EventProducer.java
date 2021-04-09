@@ -14,15 +14,17 @@ public class EventProducer {
 
     private final KafkaProperties kafkaProperties;
     private final KafkaProducerFactory kafkaProducerFactory;
+    private final ObjectMapper objectMapper;
 
     public EventProducer(KafkaProperties kafkaProperties, KafkaProducerFactory kafkaProducerFactory) {
         this.kafkaProperties = kafkaProperties;
         this.kafkaProducerFactory = kafkaProducerFactory;
+        this.objectMapper = new ObjectMapper();
     }
 
     public void produce(Event event) {
         try {
-            String value = new ObjectMapper().writeValueAsString(event);
+            String value = objectMapper.writeValueAsString(event);
             produce(kafkaProperties.getEventTopic(), event.getUserId(), value);
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             LOG.error("Cannot serialize event", e);
@@ -31,7 +33,7 @@ public class EventProducer {
 
     public void produce(AdminEvent event) {
         try {
-            String value = new ObjectMapper().writeValueAsString(event);
+            String value = objectMapper.writeValueAsString(event);
             produce(kafkaProperties.getAdminEventTopic(), event.getAuthDetails().getUserId(), value);
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             LOG.error("Cannot serialize admin event", e);
