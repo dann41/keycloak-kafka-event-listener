@@ -1,4 +1,4 @@
-package com.github.dann41;
+package com.github.dann41.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.Producer;

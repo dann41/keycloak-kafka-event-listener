@@ -1,5 +1,8 @@
-package com.github.dann41;
+package com.github.dann41.kafka;
 
+import com.github.dann41.kafka.EventProducer;
+import com.github.dann41.kafka.KafkaProducerFactory;
+import com.github.dann41.kafka.KafkaProperties;
 import org.apache.kafka.clients.producer.MockProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.BeforeEach;
