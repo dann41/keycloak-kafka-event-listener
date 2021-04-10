@@ -16,7 +16,7 @@ public class KafkaProperties {
         );
     }
 
-    public KafkaProperties(String host, String eventTopic, String adminEventTopic) {
+    KafkaProperties(String host, String eventTopic, String adminEventTopic) {
         validateNotNull(host, "host cannot be null");
         validateNotNull(eventTopic, "eventTopic cannot be null");
         validateNotNull(adminEventTopic, "adminEventTopic cannot be null");

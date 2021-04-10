@@ -3,7 +3,6 @@ package com.github.dann41.keycloak;
 import com.github.dann41.kafka.EventProducer;
 import com.github.dann41.kafka.KafkaProducerFactory;
 import com.github.dann41.kafka.KafkaProperties;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.keycloak.Config;
 import org.keycloak.events.EventListenerProvider;
 import org.keycloak.events.EventListenerProviderFactory;
@@ -24,8 +23,8 @@ public class KeycloakKafkaEventListenerProviderFactory implements EventListenerP
 
     @Override
     public void init(Config.Scope scope) {
+        System.out.println("Scope " + scope.get("kafka.topic"));
         this.properties = new KafkaProperties(scope);
-
     }
 
     @Override
@@ -52,9 +51,9 @@ public class KeycloakKafkaEventListenerProviderFactory implements EventListenerP
     public Map<String, String> getOperationalInfo() {
         Map<String, String> ret = new LinkedHashMap<>();
         ret.put("version", VERSION);
-        ret.put("kafka host", properties.getHost());
-        ret.put("kafka topic", properties.getEventTopic());
-        ret.put("kafka admin topic", properties.getAdminEventTopic());
+        ret.put("host", properties.getHost());
+        ret.put("topic", properties.getEventTopic());
+        ret.put("admin-topic", properties.getAdminEventTopic());
         return ret;
     }
 

@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka:2.11-2.0.0
+    ports:
+      - "9094:9094"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: "INSIDE://:9092,OUTSIDE://localhost:9094"
+      KAFKA_LISTENERS: "INSIDE://:9092,OUTSIDE://:9094"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT"
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ADVERTISED_HOST_NAME: "${DOCKER_IP:-localhost}"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+
+  keycloak:
+    image: jboss/keycloak:latest
+    volumes:
+      - ./standalone/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
+      - ./target/keycloak-kafka-event-listener.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-kafka-event-listener.jar
+    environment:
+      KEYCLOAK_USER: keycloak-admin
+      KEYCLOAK_PASSWORD: keycloak-password
+    command:
+      - -b 0.0.0.0 --server-config=standalone.xml
+    ports:
+      - 8080:8080
+    depends_on:
+      - kafka

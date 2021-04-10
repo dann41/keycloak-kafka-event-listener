@@ -17,6 +17,7 @@ public class EventProducer {
     private final ObjectMapper objectMapper;
 
     public EventProducer(KafkaProperties kafkaProperties, KafkaProducerFactory kafkaProducerFactory) {
+        Thread.currentThread().setContextClassLoader(null);
         this.kafkaProperties = kafkaProperties;
         this.kafkaProducerFactory = kafkaProducerFactory;
         this.objectMapper = new ObjectMapper();
@@ -43,7 +44,6 @@ public class EventProducer {
     private void produce(String topic, String key, String value) {
         Producer<String, String> producer = kafkaProducerFactory.create();
         try {
-            Thread.currentThread().setContextClassLoader(null);
             ProducerRecord<String, String> eventRecord = new ProducerRecord<String, String>(topic, key, value);
             producer.send(eventRecord);
         } finally {
