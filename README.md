@@ -35,6 +35,11 @@ To see admin events
 ```
 kafkacat -b localhost:9094 -t sample-keycloak-admin-event -C -o beginning
 ```
+
+## How to change properties
  
 If you want to adjust plugin configurations, you can modify the SPI block in the standalone.xml file. spi.xml contains
 a sample configuration that you it's already in standalone.xml.
+
+You can check if keycloak is using the valid values by accessing [Server Info page](http://localhost:8080/auth/admin/master/console/#/server-info/providers)
+and looking for kafka-event-listener
