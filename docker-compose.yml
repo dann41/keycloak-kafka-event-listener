@@ -29,8 +29,8 @@ services:
       - ./standalone/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
       - ./target/keycloak-kafka-event-listener.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-kafka-event-listener.jar
     environment:
-      KEYCLOAK_USER: keycloak-admin
-      KEYCLOAK_PASSWORD: keycloak-password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
     command:
       - -b 0.0.0.0 --server-config=standalone.xml
     ports:

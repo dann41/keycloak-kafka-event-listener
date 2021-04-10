@@ -1,0 +1,9 @@
+<spi name="eventsListener">
+    <provider name="kafka-event-listener" enabled="true">
+        <properties>
+            <property name="kafka.host" value="kafka:9092"/>
+            <property name="kafka.topic" value="sample-keycloak-event"/>
+            <property name="kafka.admin_topic" value="sample-keycloak-admin-event"/>
+        </properties>
+    </provider>
+</spi>
