@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class KeycloakKafkaEventListenerProviderFactory implements EventListenerProviderFactory, ServerInfoAwareProviderFactory {
 
-
     private static final String KAFKA_EVENT_LISTENER = "kafka-event-listener";
     private static final String VERSION = "1.0";
 

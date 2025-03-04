@@ -44,7 +44,7 @@ public class EventProducer {
     private void produce(String topic, String key, String value) {
         Producer<String, String> producer = kafkaProducerFactory.create();
         try {
-            ProducerRecord<String, String> eventRecord = new ProducerRecord<String, String>(topic, key, value);
+            ProducerRecord<String, String> eventRecord = new ProducerRecord<>(topic, key, value);
             producer.send(eventRecord);
         } finally {
             producer.flush();

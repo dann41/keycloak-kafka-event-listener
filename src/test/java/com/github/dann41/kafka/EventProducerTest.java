@@ -2,6 +2,10 @@ package com.github.dann41.kafka;
 
 import org.apache.kafka.clients.producer.MockProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RoundRobinPartitioner;
+import org.apache.kafka.clients.producer.internals.DefaultPartitioner;
+import org.apache.kafka.common.Cluster;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +31,13 @@ public class EventProducerTest
     @Mock
     private KafkaProducerFactory kafkaProducerFactory;
 
-    private MockProducer<String, String> mockProducer = new MockProducer<>();
+    private final MockProducer<String, String> mockProducer = new MockProducer<>(
+            Cluster.empty(),
+            true,
+            new RoundRobinPartitioner(),
+            new StringSerializer(),
+            new StringSerializer()
+    );
 
     private EventProducer eventProducer;
 
