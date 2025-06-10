@@ -9,7 +9,7 @@
     <url>https://github.com/dann41/keycloak-kafka-event-listener</url>
 
     <properties>
-        <keycloak.version>26.1.3</keycloak.version>
+        <keycloak.version>26.2.5</keycloak.version>
         <mockito.version>5.16.0</mockito.version>
     </properties>
 
