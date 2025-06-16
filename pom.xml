@@ -11,7 +11,7 @@
     <properties>
         <keycloak.version>26.2.5</keycloak.version>
         <mockito.version>5.16.1</mockito.version>
-        <jackson.version>2.19.0</jackson.version>
+        <jackson.version>2.19.1</jackson.version>
     </properties>
 
     <dependencyManagement>
