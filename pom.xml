@@ -9,9 +9,9 @@
     <url>https://github.com/dann41/keycloak-kafka-event-listener</url>
 
     <properties>
-        <keycloak.version>26.2.5</keycloak.version>
+        <keycloak.version>26.3.1</keycloak.version>
         <mockito.version>5.18.0</mockito.version>
-        <jackson.version>2.19.0</jackson.version>
+        <jackson.version>2.19.1</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -19,7 +19,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.13.1</version>
+                <version>5.13.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
