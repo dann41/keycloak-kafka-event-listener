@@ -10,7 +10,7 @@
 
     <properties>
         <keycloak.version>26.4.2</keycloak.version>
-        <mockito.version>5.20.0</mockito.version>
+        <mockito.version>5.21.0</mockito.version>
         <jackson.version>2.19.2</jackson.version>
     </properties>
 
